@@ -173,7 +173,7 @@ app.post("/forgotpassword/users", async (req, res) => {
     const resetTokenExpiry = Date.now() + 15 * 60 * 1000;
 
     const resetLink =
-`http://localhost:3000/resetpassword.html?token=${resetToken}&email=${user.email}`;
+`https://ganthro.onrender.com/resetpassword.html?token=${resetToken}&email=${user.email}`;
 
 console.log("RESET LINK:", resetLink);
 
