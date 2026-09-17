@@ -1,0 +1,174 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    background: #f5f7fb;
+}
+
+.container {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    background: #ffffff;
+}
+
+#hero-image {
+    min-height: 100vh;
+    background-image: url("Ganthro-hero.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    grid-row: 1 / 4;
+}
+
+.container h1 {
+    align-self: end;
+    padding: 50px 70px 6px;
+    font-size: 32px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.container > p {
+    padding: 0 70px;
+    color: #6b7280;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+#loginForm {
+    padding: 30px 70px 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+#loginForm > label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    color: #303642;
+    margin-bottom: 8px;
+}
+
+#loginForm > input {
+    width: 100%;
+    height: 48px;
+    padding: 0 14px;
+    margin-bottom: 20px;
+    border: 1px solid #d9dde5;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #111827;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+#loginForm > input::placeholder {
+    color: #9ca3af;
+}
+
+#loginForm > input:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+#passwordError {
+    min-height: 18px;
+    margin: -8px 0 12px;
+    color: #dc2626;
+    font-size: 13px;
+}
+#passwordError1 {
+    margin-top: 12px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #16a34a;
+    min-height: 20px;
+}
+
+.login-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 2px 0 26px;
+    font-size: 13px;
+}
+
+.remember {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #68707d;
+    cursor: pointer;
+}
+
+.remember input {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    accent-color: #4f46e5;
+}
+
+.login-options a {
+    color: #4f46e5;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-options a:hover {
+    text-decoration: underline;
+}
+
+.submit {
+    width: 100%;
+    height: 48px;
+    border: none;
+    border-radius: 8px;
+    background: #111827;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.submit:hover {
+    background: #252c3a;
+    transform: translateY(-1px);
+}
+
+.submit:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 850px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #hero-image {
+        width: 100%;
+        min-height: 300px;
+    }
+
+    .container h1 {
+        padding: 35px 30px 6px;
+        font-size: 28px;
+    }
+
+    .container > p {
+        padding: 0 30px;
+    }
+
+    #loginForm {
+        padding: 25px 30px 40px;
+    }
+}

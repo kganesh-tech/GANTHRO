@@ -1,0 +1,186 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #08050f;
+    color: white;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+}
+
+header {
+    width: 100%;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+#logo {
+    font-size: 24px;
+    letter-spacing: 1px;
+}
+
+.nav-items {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-items a {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+}
+
+.nav-items a:last-child {
+    background: #6c63ff;
+    padding: 11px 20px;
+    border-radius: 20px;
+}
+
+main {
+    width: 100%;
+}
+
+.hero {
+    width: 100%;
+    min-height: 720px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    padding-left: 9%;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.hero h1 {
+    width: 50%;
+    max-width: 600px;
+    font-size: 56px;
+    line-height: 1.08;
+    letter-spacing: -2px;
+    margin-bottom: 22px;
+    position: relative;
+    z-index: 3;
+}
+
+.hero-text {
+    width: 50%;
+    max-width: 500px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #d0c9df;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 3;
+}
+
+.hero-buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.submit {
+    display: inline-block;
+    text-decoration: none;
+    padding: 13px 23px;
+    border-radius: 22px;
+    background: #6c63ff;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.hero-buttons .submit:last-child {
+    background: transparent;
+    border: 1px solid #aaa1bd;
+}
+
+.hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 720px;
+    background-image: url("paragon-hero.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+.features {
+    width: 86%;
+    max-width: 1200px;
+    margin: 90px auto;
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 34px;
+    margin-bottom: 45px;
+}
+
+.cards {
+    display: flex;
+    gap: 25px;
+}
+
+.card {
+    flex: 1;
+    padding: 35px 25px;
+    border: 1px solid #292230;
+    border-radius: 15px;
+    background: #120d1b;
+    text-align: left;
+}
+
+.card h3 {
+    font-size: 21px;
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: #aaa1b5;
+    line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+
+    .nav-items {
+        gap: 15px;
+    }
+
+    .hero {
+        padding-left: 8%;
+    }
+
+    .hero h1 {
+        width: 80%;
+        font-size: 44px;
+    }
+
+    .hero-text {
+        width: 70%;
+    }
+
+    .cards {
+        flex-direction: column;
+    }
+}

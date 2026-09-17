@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>GANTHRO AUTH</title>
+        <link rel ="stylesheet" href="login.css">
+    </head>
+    <body>
+        <div class="container">
+            <section id="hero-image">
+
+            </section>
+            <h1>Welcome back
+            </h1>
+            <p>Sign in to continue to your Ganthro account.</p>
+            <form id="loginForm">
+                
+                <label>USERNAME :</label>
+                <input type="text" id="username" placeholder="enter username" required>
+               
+                <label>PASSWORD :</label>
+                <input type="password" id="password" placeholder="enter password" required>
+               
+                <p id ="passwordError"></p>
+                <div class="login-options">
+                    <label class="remember">
+                    <input type="checkbox" id="remember" >Remeber me</label>
+                   
+                    <a href="forgotpassword.html">Forgotpassword?</a>
+                </div>
+
+                <button type="submit" class="submit" id="loginbtn">LOGIN</button>
+                <p id="passwordError1"></p>
+
+            </form>
+        </div>
+        <script src="login.js"></script>
+    </body>
+</html>

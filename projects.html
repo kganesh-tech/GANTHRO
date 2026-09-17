@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>GANTHRO AUTH</title>
+        <link rel="stylesheet" href="projects.css">
+    </head>
+
+    <body>
+
+        <div class="container">
+
+            <nav class="sidebar-items">
+
+                <h1>GANTHRO</h1>
+
+                <a href="dashboard.html">DASHBOARD</a>
+
+                <a href="#">PROJECTS</a>
+
+                <a href="#" id="authentication">AUTHENTICATION</a>
+
+                <div class="authentication-items">
+
+                    <a href="#" id="usersLink">USERS</a>
+
+                    <a href="#" id="apikeysLink">API KEYS</a>
+
+                    <a href="#">SESSIONS</a>
+
+                </div>
+
+                <a href="#">SETTINGS</a>
+
+            </nav>
+
+
+            <div class="section" id="mainContent">
+
+                <section class="api-keys" id="apikeyssection">
+
+                </section>
+
+            </div>
+
+
+            <div class="modal-overlay" id="apiKeyModal">
+
+                <div class="api-key-modal">
+
+                    <div class="modal-header">
+
+                        <div>
+
+                            <h2>Create API Key</h2>
+
+                            <p>
+                                Create a new API key for your project.
+                            </p>
+
+                        </div>
+
+                        <button
+                            class="modal-close"
+                            id="closeApiKeyModal">
+                            &times;
+                        </button>
+
+                    </div>
+
+
+                    <div class="modal-body">
+
+                        <div class="form-group">
+
+                            <label for="apiKeyName">
+                                Key name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="apiKeyName"
+                                placeholder="e.g. Production Backend"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="apiKeyEnvironment">
+                                Environment
+                            </label>
+
+                            <select id="apiKeyEnvironment">
+
+                                <option value="test">
+                                    Test
+                                </option>
+
+                                <option value="live">
+                                    Live
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="security-info">
+
+                            <span class="security-icon">🔐</span>
+
+                            <div>
+
+                                <strong>
+                                    Keep your API key secure
+                                </strong>
+
+                                <p>
+                                    Never expose your secret API key in
+                                    client-side code or public repositories.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="modal-footer">
+
+                        <button
+                            type="button"
+                            class="cancel-btn"
+                            id="cancelApiKeyModal">
+                            Cancel
+                        </button>
+
+                        <button
+                            type="button"
+                            class="create-key-btn"
+                            id="createApiKey">
+                            Create API Key
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-overlay" id="apiSuccessModal">
+
+                <div class="success-modal">
+
+                    <div class="success-message">
+
+                        <h2>
+                            API Key Generated Successfully
+                        </h2>
+
+                        <p>
+                            Your API key has been created.
+                        </p>
+
+                    </div>
+
+
+                    <div class="apikey-res">
+
+                        <input
+                            type="text"
+                            id="apiKeyValue"
+                            placeholder="GANT_exampleapikey"
+                            readonly
+                        >
+
+                        <button
+                            type="button"
+                            id="copyBtn">
+                            Copy
+                        </button>
+
+                    </div>
+
+
+                    <p class="security-warning">
+                        Keep this API key secure.
+                        Do not share it with anyone.
+                    </p>
+
+
+                    <button
+                        type="button"
+                        id="closeBtn">
+                        Close
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <script src="projects.js"></script>
+
+    </body>
+</html>

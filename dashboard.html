@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GANTHRO DASHBOARD</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <nav class="nav-items">
+
+        <div class="brand">
+            GANTHRO
+        </div>
+
+        <div class="nav-links">
+            <a href="#">Dashboard</a>
+            <a href="#">Projects</a>
+        </div>
+
+    </nav>
+
+    <header class="welcome-msg">
+
+        <p>
+            Hello,
+            <span id="username">username</span>
+        </p>
+
+        <div class="profile-wrapper">
+
+            <button id="profileBtn">
+                <span class="profile-icon">👤</span>
+                
+            </button>
+
+            <div class="profile-menu" id="profileMenu">
+
+                <div class="profile-header">
+                    <span class="profile-icon">👤</span>
+                    
+                    <div>
+                        <strong id="menuUsername">username</strong>
+                        <small>Manage your GANTHRO Account</small>
+                    </div>
+                </div>
+
+                <a href="#">Profile</a>
+                <a href="#">Change Password</a>
+                <a href="#">Settings</a>
+
+                <div class="menu-divider"></div>
+
+                <a href="login.html" class="logout">Logout</a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <main class="project-info">
+
+        <section id="hero-image">
+
+            <div class="hero-content">
+
+                <h1>Build. Secure. Manage.</h1>
+
+                <p>
+                    Create and manage your projects securely with GANTHRO.
+                </p>
+
+                <button type="button" id="createprojectBtn">
+                    Create Project
+                </button>
+
+            </div>
+
+        </section>
+
+        <div class="projects-section">
+
+        </div>
+
+    </main>
+
+</div>
+
+<script src="dashboard.js"></script>
+
+</body>
+</html>
