@@ -1,44 +1,53 @@
 
 
-const resetpasswordbtn=
+const resetpasswordbtn =
 document.getElementById("resetpasswordbtn");
 
-resetpasswordbtn.addEventListener("click" , function(event) {
+resetpasswordbtn.addEventListener("click", function(event) {
     event.preventDefault();
 
     const email =
 document.getElementById("email").value;
 
-console.log(email);
+    console.log(email);
 
-fetch("https://ganthro.onrender.com/forgotpassword/users" , {
-    method : "POST",
-    headers : {
-        "Content-Type" : "application/json"
-    },
+    fetch("https://ganthro.onrender.com/forgotpassword/users", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
 
-    body : JSON.stringify({
-        email : email
-})
+        body: JSON.stringify({
+            email: email
+        })
 
-})
-.then(res => res.json())
-.then(data => {
-    console.log("BACKEND RESPONSE:" , data);
+    })
+    .then(res => {
+        if (!res.ok) {
+            throw new Error(`Server returned ${res.status}`);
+        }
 
-    document.getElementById("passwordError").textContent = data.message;
+        return res.json();
+    })
+    .then(data => {
+        console.log("BACKEND RESPONSE:", data);
 
-    if(res.ok){
+        const passwordError =
+            document.getElementById("passwordError");
+
+        passwordError.textContent = data.message;
+
         passwordError.style.color = "green";
+    })
+    .catch(error => {
+        console.log("ERROR:", error);
 
-    } else {
+        const passwordError =
+            document.getElementById("passwordError");
+
+        passwordError.textContent =
+            "Something went wrong. Please try again.";
+
         passwordError.style.color = "red";
-    }
-
-    
-    
-})
-.catch(error => {
-    console.log("ERROR:" , error);
-});
+    });
 });
