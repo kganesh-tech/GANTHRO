@@ -30,7 +30,7 @@ savepasswordbtn.addEventListener("click" , function(event) {
 
     passwordError.textContent = "";
 
-    fetch(`http://localhost:3000/resetpassword/${resetToken}` , {
+    fetch(`https://ganthro.onrender.com/resetpassword/${resetToken}` , {
         method : "POST",
         headers : {
             "Content-Type" : "application/json"
