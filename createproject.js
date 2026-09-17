@@ -35,7 +35,7 @@ createprojectbtn.addEventListener("click" , function(event) {
 
     
   
-    fetch(`http://localhost:3000/projects/${username}` , {
+    fetch(`https://ganthro.onrender.com/projects/${username}` , {
         method : "POST",
         headers : {
             "Content-Type" : "application/json",
