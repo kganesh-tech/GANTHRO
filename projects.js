@@ -230,7 +230,7 @@ apiKeysLink.addEventListener("click", function(event) {
 
 
 
-        fetch(`http://localhost:3000/apiKey/${userId}/${projectId}`, {
+        fetch(`https://ganthro.onrender.com/apiKey/${userId}/${projectId}`, {
 
             method : "POST",
 
@@ -300,7 +300,7 @@ apiKeysLink.addEventListener("click", function(event) {
 
 
 
-    fetch(`http://localhost:3000/apikeys/${projectId}`, {
+    fetch(`https://ganthro.onrender.com/apikeys/${projectId}`, {
 
         method : "GET",
 
