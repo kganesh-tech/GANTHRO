@@ -24,7 +24,7 @@ async function loadprojects() {
 
     const token = localStorage.getItem("token");
 
-    fetch("http://localhost:3000/projects", {
+    fetch("https://ganthro.onrender.com/projects", {
         method: "GET",
         headers: {
             "Authorization": `Bearer ${token}`
