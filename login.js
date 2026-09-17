@@ -25,7 +25,7 @@ form.addEventListener("submit", function(event) {
         password
     };
 
-    fetch("http://localhost:3000/login/users", {
+    fetch("https://ganthro.onrender.com/login/users", {
         method: "POST",
 
         headers: {
