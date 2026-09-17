@@ -11,7 +11,7 @@ document.getElementById("email").value;
 
 console.log(email);
 
-fetch("http://localhost:3000/forgotpassword/users" , {
+fetch("https://ganthro.onrender.com/forgotpassword/users" , {
     method : "POST",
     headers : {
         "Content-Type" : "application/json"
