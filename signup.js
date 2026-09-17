@@ -37,7 +37,7 @@ form.addEventListener("submit" , function(event) {
 
     console.log("USER DETAILS" , users);
 
-    fetch("http://localhost:3000/signup/users" , {
+    fetch("https://ganthro.onrender.com/signup/users" , {
         method: "POST",
         headers : {
             "Content-Type" : "application/json"
