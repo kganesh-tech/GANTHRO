@@ -15,6 +15,7 @@ app.use(express.json());
 app.use(cors());
 app.use(express.static("public"));
 app.use(express.static(__dirname));
+
 const client = new MongoClient(process.env.MONGODB_URI
     
 );
@@ -22,6 +23,7 @@ const client = new MongoClient(process.env.MONGODB_URI
 let users;
 let projects;
 let apikeys;
+let projectusers;
 
 async function connectDB() {
     try {
@@ -31,6 +33,7 @@ async function connectDB() {
         users = db.collection("users");
         projects = db.collection("projects");
         apikeys = db.collection("apikeys");
+        projectusers = db.collection("projectusers");
 
         console.log("Mongodb connected successfully");
 
@@ -356,4 +359,98 @@ app.get("/apikeys/:projectId", authMiddleware, async (req, res) => {
     return res.status(200).json(apiKeyList);
 });
 
+app.post("/projectusers/test-connection", async (req, res) => {
+    try {
+        const receivedApiKey = req.headers["x-api-key"];
+        const username = req.body.username;
+        const email = req.body.email;
+        const password = req.body.password;
 
+        console.log("Received API key:", receivedApiKey);
+
+        if (!receivedApiKey) {
+            return res.status(401).json({
+                success: false,
+                message: "API key missing"
+            });
+        }
+
+        const allApiKeys = await apikeys.find({
+            status: "Active"
+        }).toArray();
+
+        let matchedApiKey = null;
+
+        for (const keyData of allApiKeys) {
+            const isMatch = await bcrypt.compare(
+                receivedApiKey,
+                keyData.apiKey
+            );
+
+            if (isMatch) {
+                matchedApiKey = keyData;
+                break;
+            }
+        }
+
+        if (!matchedApiKey) {
+            return res.status(401).json({
+                success: false,
+                message: "Invalid API key"
+            });
+        }
+
+        console.log("MATCHED API KEY:", matchedApiKey);
+
+        const hashedpassword = await bcrypt.hash(password , 10);
+
+         const users = {
+            projectId : matchedApiKey.projectId,
+            username : username,
+            email : email,
+            password : hashedpassword
+
+        }
+
+        await projectusers.insertOne(users);
+
+        
+
+        return res.status(200).json({
+            success: true,
+            message: "SIGNUP SUCCESSFUL",
+            data: {
+                userId: matchedApiKey.userId,
+                projectId: matchedApiKey.projectId,
+                username :username,
+                email : email
+            }
+        });
+
+        
+
+       
+        
+
+    } catch (error) {
+        console.error("TEST CONNECTION ERROR:", error);
+
+        return res.status(500).json({
+            success: false,
+            message: "Internal server error"
+        });
+    }
+});
+
+app.get("/projectusers/:projectId" , async(req,res) => {
+
+    const projectId = req.params.projectId;
+
+    console.log("PROJECT DETAIL:" , projectId);
+
+  const projectData = await projectusers.find({ projectId: projectId}).toArray();
+  
+  console.log("PROJECT USERS:" , projectData);
+  return res.status(200).json(projectData);
+
+})
