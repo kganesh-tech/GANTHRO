@@ -768,6 +768,31 @@ apiKeysLink.addEventListener("click", function(event) {
             revokeButton.textContent =
             "REVOKE";
 
+            revokeButton.addEventListener("click" , function(event) {
+                event.preventDefault();
+
+                const apiKey = apikey.apiKey;
+                console.log(apiKey);
+              
+                fetch("https://ganthro.onrender.com/revoke" , {
+                    method : "POST",
+                    headers : {
+                        "Content-Type" : "application/json"
+                    },
+                 body : JSON.stringify({ apiKey : apiKey})
+                
+                })
+
+                .then(res => res.json())
+                .then(data => {
+
+                    console.log(data);
+                    if(success = true){
+                        revokeButton.textContent = "revoked";
+                    }
+                });
+            });
+
 
 
             apikeyCard.appendChild(
