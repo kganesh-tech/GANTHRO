@@ -360,48 +360,54 @@ app.get("/apikeys/:projectId", authMiddleware, async (req, res) => {
 });
 
 app.post("/projectusers/test-connection", async (req, res) => {
+    console.log("TEST-CONNECTION HIT");
     try {
         const receivedApiKey = req.headers["x-api-key"];
         const username = req.body.username;
         const email = req.body.email;
         const password = req.body.password;
 
-        console.log("Received API key:", receivedApiKey);
+        console.log("RECEIVED KEY:", receivedApiKey);
 
-        if (!receivedApiKey) {
-            return res.status(401).json({
-                success: false,
-                message: "API key missing"
-            });
-        }
+const allApiKeys = await apikeys.find({}).toArray();
 
-        const allApiKeys = await apikeys.find({
-            status: "Active"
-        }).toArray();
+console.log("TOTAL API KEYS:", allApiKeys.length);
 
-        let matchedApiKey = null;
+let matchedApiKey = null;
 
-        for (const keyData of allApiKeys) {
-            const isMatch = await bcrypt.compare(
-                receivedApiKey,
-                keyData.apiKey
-            );
+for (const keyData of allApiKeys) {
 
-            if (isMatch) {
-                matchedApiKey = keyData;
-                break;
-            }
-        }
+    console.log("CHECKING KEY:", keyData._id);
+    console.log("STATUS:", keyData.status);
+
+    const isMatch = await bcrypt.compare(
+        receivedApiKey,
+        keyData.apiKey
+    );
+
+    console.log("MATCH:", isMatch);
+
+    if (isMatch) {
+        matchedApiKey = keyData;
+        break;
+    }
+}
+
+console.log("FINAL MATCH:", matchedApiKey);
 
         if (!matchedApiKey) {
-            return res.status(401).json({
-                success: false,
-                message: "Invalid API key"
-            });
-        }
+    return res.status(401).json({
+        success: false,
+        message: "Invalid API key"
+    });
+}
 
-        console.log("MATCHED API KEY:", matchedApiKey);
-
+if (matchedApiKey.status === "revoked") {
+    return res.status(401).json({
+        success: false,
+        message: "API Key is revoked"
+    });
+}
         const hashedpassword = await bcrypt.hash(password , 10);
 
          const users = {
@@ -453,4 +459,38 @@ app.get("/projectusers/:projectId" , async(req,res) => {
   console.log("PROJECT USERS:" , projectData);
   return res.status(200).json(projectData);
 
-})
+});
+
+app.post("/revoke", async (req, res) => {
+
+    const apiKeyHash = req.body.apiKey;
+
+console.log("HASH RECEIVED:", apiKeyHash);
+
+const apiKeyData = await apikeys.findOne({
+    apiKey: apiKeyHash
+});
+
+console.log("FOUND:", apiKeyData);
+
+if (!apiKeyData) {
+    return res.status(401).json({
+        success: false,
+        message: "API Key not found"
+    });
+}
+
+await apikeys.updateOne(
+    { _id: apiKeyData._id },
+    {
+        $set: {
+            status: "revoked"
+        }
+    }
+);
+
+return res.status(200).json({
+    success: true,
+    message: "API key revoked"
+});
+});
